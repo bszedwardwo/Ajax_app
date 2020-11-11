@@ -9,9 +9,16 @@ class PostsController < ApplicationController
     redirect_to action: :index
   end
 
-  private
-  def memo_params
-    params.require(:post).permit(:memo)
+  def checked
+    post = Post.find(params[:id])
+    if post.checked
+      post.update(checked: false)
+    else 
+      post.update(checked: true)
+    end
+
+    item = post.find(params[:id])
+    render json: {post: item}
   end
 
 end
