@@ -1,15 +1,12 @@
 class PostsController < ApplicationController
 
   def index
-    @post = Post.all
-  end
-
-  def new
-    @post = Post.new
+    @post = Post.all.order(id: "DESC")
   end
 
   def create
     Post.create(memo: params[:memo])
+    redirect_to action: :index
   end
 
   private
