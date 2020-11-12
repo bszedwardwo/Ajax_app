@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(memo: params[:memo])
+    Post.create(content: params[:content])
     redirect_to action: :index
   end
 
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
       post.update(checked: true)
     end
 
-    item = post.find(params[:id])
+    item = Post.find(params[:id])
     render json: {post: item}
   end
 
